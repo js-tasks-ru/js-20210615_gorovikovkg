@@ -5,5 +5,7 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-
+  let answer = arr.sort((item1, item2)=>item1.localeCompare(item2));
+  return param === "asc" ? answer.reverse() : answer;
 }
+
