@@ -5,12 +5,12 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
+  const params = {
+    asc: 1,
+    desc: -1
+  };
   const collator = new Intl.Collator(undefined, {caseFirst: "upper"});
-  let answer = arr.sort(collator.compare);
-  // (item1, item2)=>{
-  //     return item1.localeCompare(item2, {kf: "lower"});
-  //   }
-  return param === "asc" ? answer : answer.reverse();
+  return Array.from(arr.sort((i,j)=>params[param] * collator.compare(i,j)));
 }
 
 
