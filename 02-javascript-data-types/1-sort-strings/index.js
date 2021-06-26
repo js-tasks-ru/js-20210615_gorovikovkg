@@ -9,8 +9,10 @@ export function sortStrings(arr, param = 'asc') {
     asc: 1,
     desc: -1
   };
-  const collator = new Intl.Collator(undefined, {caseFirst: "upper"});
-  return Array.from(arr.sort((i,j)=>params[param] * collator.compare(i,j)));
+  arr = [...arr];
+  const collator = new Intl.Collator(['ru', "en"], {caseFirst: "upper"});
+  arr.sort((i,j)=>params[param] * collator.compare(i,j));
+  return [...arr];
 }
 
 
