@@ -131,7 +131,6 @@ describe('dom-document-loading/sortable-table-v1', () => {
     const { body } = sortableTable.subElements;
     const firstRow = body.firstElementChild;
     const lastRow = body.lastElementChild;
-
     expect(firstRow.children[cellIndex].textContent).toEqual('53');
     expect(lastRow.children[cellIndex].textContent).toEqual('3');
   });

@@ -58,14 +58,16 @@ export default class SortableTable {
     this.subElements.head.querySelector("[data-order]")?.removeAttribute("data-order");
     this.headers[field].elem.setAttribute("data-order", order);
     let collator;
+    if (this.headers[field] === undefined) throw new Error("This table does not have field " + field)
     if (this.headers[field].sortType === "string") {
       collator = new Intl.Collator(['ru', "en"], {caseFirst: "upper"});
     }
     else if (this.headers[field].sortType === "number"){
       collator = new Intl.Collator(['ru', "en"], {numeric: true});
     }
+    else throw new Error("Invalid order argument, expected asc or desc but recived " + order);
     rows.sort((a, b) =>{
-      return orders[order] * collator.compare(a.children[this.headers[field].num].innerText, b.children[this.headers[field].num].innerText);
+      return orders[order] * collator.compare(a.children[this.headers[field].num].textContent, b.children[this.headers[field].num].textContent);
     });
     rows.forEach(item => this.subElements.body.append(item));
   }

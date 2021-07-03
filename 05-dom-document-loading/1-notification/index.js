@@ -27,7 +27,7 @@ export default class NotificationMessage {
     }
     NotificationMessage.actualMessage = this.element;
     this.element.removeTimeout = setTimeout(()=>{
-      this.element.remove();
+      this.remove();
     }, this.duration);
     target.append(this.element);
   }
@@ -35,5 +35,8 @@ export default class NotificationMessage {
     this?.element?.remove();
     clearTimeout(this?.element?.removeTimeout);
     this.element = null;
+  }
+  remove() {
+    this.element.remove();
   }
 }
