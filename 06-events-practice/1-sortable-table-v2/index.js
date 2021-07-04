@@ -18,7 +18,7 @@ export default class SortableTable {
     this.reactOnTab = function(event){
       const target = event.target.closest(".sortable-table__cell");
       if (target && target.getAttribute("data-sortable") === "true"){
-        this.sort(target.dataset.id, target.dataset.order === "asc" ? "desc" : "asc");
+        this.sort(target.dataset.id, target.dataset.order === "desc" ? "asc" : "desc");
       }
     }.bind(this);
     this.subElements.header.addEventListener("pointerdown", this.reactOnTab);
