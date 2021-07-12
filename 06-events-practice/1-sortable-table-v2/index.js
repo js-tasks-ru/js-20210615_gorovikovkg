@@ -13,7 +13,6 @@ export default class SortableTable {
     this.element = this.element.firstElementChild;
     this.element.firstElementChild.append(this.subElements.header, this.subElements.body);
     this.arrow = this.makeArrow();
-    //Обработка клика ...
     this.sort(id, order);
     this.reactOnTab = function(event){
       const target = event.target.closest(".sortable-table__cell");
@@ -22,7 +21,6 @@ export default class SortableTable {
       }
     }.bind(this);
     this.subElements.header.addEventListener("pointerdown", this.reactOnTab);
-    // ..................
   }
   makeArrow() {
     const div = document.createElement("div");

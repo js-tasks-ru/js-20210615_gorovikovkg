@@ -1,4 +1,3 @@
-// А будем ли мы реализовывать такие вещи с помощью кастомных элементов и вообще проходить их?
 export default class ColumnChart {
     constructor(obj = {}) {
         this.create(obj);
