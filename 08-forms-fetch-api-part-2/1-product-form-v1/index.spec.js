@@ -76,7 +76,7 @@ describe('forms-fetch-api-part-2/product-form-v1', () => {
 
     values.images = [];
     values.id = productFormComponent.productId;
-
+    console.log(imageListContainer.children);
     for (const image of imagesHTMLCollection) {
       values.images.push({
         url: image.src,
