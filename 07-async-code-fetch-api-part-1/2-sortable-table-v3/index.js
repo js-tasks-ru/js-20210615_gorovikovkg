@@ -283,6 +283,7 @@ export default class SortableTable {
     this.element.classList.remove('sortable-table_loading');
 
     return data;
+  }
 
   sortData(id, order) {
     const arr = [...this.data];
@@ -303,7 +304,7 @@ export default class SortableTable {
       }
     });
   }
-  
+
 
   addRows(data) {
     this.data = data;
@@ -418,12 +419,6 @@ export default class SortableTable {
   }
 
 
-  addRows(data) {
-    this.data = data;
-
-    this.subElements.body.innerHTML = this.getTableRows(data);
-  }
-
   update(data) {
     const rows = document.createElement('div');
 
@@ -433,47 +428,6 @@ export default class SortableTable {
     this.subElements.body.append(...rows.childNodes);
   }
 
-  getTableHeader() {
-    return `<div data-element="header" class="sortable-table__header sortable-table__row">
-      ${this.headersConfig.map(item => this.getHeaderRow(item)).join('')}
-    </div>`;
-  }
-
-  getHeaderRow({id, title, sortable}) {
-    const order = this.sorted.id === id ? this.sorted.order : 'asc';
-
-    return `
-      <div class="sortable-table__cell" data-id="${id}" data-sortable="${sortable}" data-order="${order}">
-        <span>${title}</span>
-        ${this.getHeaderSortingArrow(id)}
-      </div>
-    `;
-  }
-
-  getHeaderSortingArrow(id) {
-    const isOrderExist = this.sorted.id === id ? this.sorted.order : '';
-
-    return isOrderExist
-      ? `<span data-element="arrow" class="sortable-table__sort-arrow">
-          <span class="sort-arrow"></span>
-        </span>`
-      : '';
-  }
-
-  getTableBody(data) {
-    return `
-      <div data-element="body" class="sortable-table__body">
-        ${this.getTableRows(data)}
-      </div>`;
-  }
-
-  getTableRows(data) {
-    return data.map(item => `
-      <div class="sortable-table__row">
-        ${this.getTableRow(item, data)}
-      </div>`
-    ).join('');
-  }
 
   getTableRow(item) {
     const cells = this.headersConfig.map(({id, template}) => {
@@ -490,25 +444,6 @@ export default class SortableTable {
     }).join('');
   }
 
-  getTable() {
-    return `
-      <div class="sortable-table">
-        ${this.getTableHeader()}
-        ${this.getTableBody(this.data)}
-
-        <div data-element="loading" class="loading-line sortable-table__loading-line"></div>
-
-        <div data-element="emptyPlaceholder" class="sortable-table__empty-placeholder">
-          No products
-        </div>
-      </div>`;
-  }
-
-  initEventListeners() {
-    this.subElements.header.addEventListener('pointerdown', this.onSortClick);
-    document.addEventListener('scroll', this.onWindowScroll);
-  }
-
   sortOnClient(id, order) {
     const sortedData = this.sortData(id, order);
 
@@ -521,15 +456,6 @@ export default class SortableTable {
     const data = await this.loadData(id, order, start, end);
 
     this.renderRows(data);
-  }
-
-  renderRows(data) {
-    if (data.length) {
-      this.element.classList.remove('sortable-table_empty');
-      this.addRows(data);
-    } else {
-      this.element.classList.add('sortable-table_empty');
-    }
   }
 
   getSubElements(element) {

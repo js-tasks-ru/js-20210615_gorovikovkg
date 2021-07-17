@@ -138,10 +138,11 @@ describe('forms-fetch-api-part-2/range-picker', () => {
     let from = rangePicker.element.querySelector('.rangepicker__selected-from');
     const prevDate = from.previousElementSibling;
     const nextDate = from.nextElementSibling;
-
+    console.log(rangePicker.actualDateRange.from, rangePicker.actualDateRange.to);
     prevDate.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    console.log(rangePicker.firstSpot);
     nextDate.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-
+    console.log(rangePicker.actualDateRange.from, rangePicker.actualDateRange.to);
     from = rangePicker.element.querySelector('.rangepicker__selected-from');
     const to = rangePicker.element.querySelector('.rangepicker__selected-to');
 
@@ -234,10 +235,8 @@ describe('forms-fetch-api-part-2/range-picker', () => {
       bubbles: true
     }));
 
-    from = rangePicker.element.querySelector('.rangepicker__selected-from');
-    to = rangePicker.element.querySelector('.rangepicker__selected-to');
-
     // check selection after second opening
+
     expect(from.textContent.trim()).toEqual('1');
     expect(to.textContent.trim()).toEqual('30');
   });
