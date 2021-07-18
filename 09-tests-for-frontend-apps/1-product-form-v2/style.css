@@ -91,6 +91,7 @@ body {
 .sortable-list__item[data-grab-handle],
 .sortable-list__item [data-grab-handle] {
   cursor: grab;
+  -webkit-user-drag: none;
 }
 
 .sortable-list__item [data-delete-handle] {
