@@ -122,7 +122,6 @@ describe('events-practice/double-slider', () => {
       clientX: 1000,
       bubbles: true
     });
-
     const moveLeft = new MouseEvent('pointermove', {
       clientX: 0,
       bubbles: true
